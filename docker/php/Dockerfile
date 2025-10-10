@@ -1,7 +1,7 @@
 FROM php:8.4-fpm-alpine3.22
 
 # Устанавливаем рабочую директорию
-WORKDIR /app
+WORKDIR /srv
 
 # Установка дополнительных PHP расширений
 RUN apk update && apk add \
@@ -10,3 +10,7 @@ RUN apk update && apk add \
     && docker-php-ext-install pdo pdo_pgsql opcache zip
 
 COPY ./project .
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN composer install
