@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Repository\UserRepository;
 use App\State\UserRegistrationProcessor;
@@ -19,6 +21,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
             uriTemplate: '/register',
             processor: UserRegistrationProcessor::class
         ),
+        new GetCollection(security: 'is_granted(\'ROLE_ADMIN\')'),
+        new Get()
     ]
 )]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_UUID', fields: ['uuid'])]
