@@ -26,6 +26,9 @@ security:
             refresh_jwt:
                 check_path: /refresh
         main:
+            logout:
+                path: /logout
+                clear_site_data: [ "cookies", "storage" ]
             json_login:
                 provider: app_user_email_provider
                 check_path: /login # The name in routes.yaml is enough for mapping
