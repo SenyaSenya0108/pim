@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class TestController extends AbstractController
 {
-    #[Route('/test', methods: ["GET"])]
+    #[Route('/api/test', methods: ["GET"])]
     public function index(): Response
     {
         return new Response("PID: " . getmypid() . "\n");
