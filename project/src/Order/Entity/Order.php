@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Entity;
+namespace App\Order\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
-use App\Repository\ProductRepository;
+use App\Order\Repository\OrderRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ApiResource(
     operations: [
         new GetCollection(),
@@ -17,29 +18,29 @@ use Doctrine\ORM\Mapping as ORM;
         new Post()
     ]
 )]
-class Product
+class Order
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[ORM\Column(type: Types::INTEGER, nullable: false)]
+    private ?int $userId = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getUserId(): ?int
     {
-        return $this->title;
+        return $this->userId;
     }
 
-    public function setTitle(string $title): static
+    public function setUserId(?int $userId): static
     {
-        $this->title = $title;
+        $this->userId = $userId;
 
         return $this;
     }

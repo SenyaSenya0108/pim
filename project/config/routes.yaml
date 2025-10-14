@@ -1,13 +1,19 @@
-controllers:
+user_controllers:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../src/User/Controller/
+        namespace: App\User\Controller
+    type: attribute
+
+catalog_controllers:
+    resource:
+        path: ../src/Catalog/Controller/
+        namespace: App\Catalog\Controller
     type: attribute
 
 login:
     path: /login
-    methods: ['POST']
+    methods: [ 'POST' ]
 
 logout:
     path: /logout
-    methods: []
+    methods: [ ]
