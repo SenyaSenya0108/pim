@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Catalog\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,9 +8,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class TestController extends AbstractController
 {
-    #[Route('/api/test', methods: ["GET"])]
+    #[Route('/api/catalog_test', methods: ["GET"])]
     public function index(): Response
     {
-        return new Response("PID: " . getmypid() . "\n");
+        return new Response("module catalog");
     }
 }
