@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Order\Repository\OrderRepository;
+use App\Order\State\OrderUserProvider;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,10 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ApiResource(
     operations: [
         new GetCollection(),
-        new Get(),
+        new Get(provider: OrderUserProvider::class),
         new Post()
     ]
 )]
+#[ORM\Table(name: '`orders`')]
 class Order
 {
     #[ORM\Id]
