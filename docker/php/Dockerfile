@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-alpine3.22
+FROM php:8.3-fpm-alpine3.22
 
 # Устанавливаем рабочую директорию
 WORKDIR /srv
@@ -7,6 +7,8 @@ ENV PHP_IDE_CONFIG 'serverName=pim'
 
 # Установка дополнительных PHP расширений
 RUN apk update && apk add \
+    icu-dev \
+    icu-data-full \
     libpq-dev \
     libzip-dev \
     autoconf \
@@ -16,7 +18,7 @@ RUN apk update && apk add \
     make \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
-    && docker-php-ext-install pdo pdo_pgsql opcache zip
+    && docker-php-ext-install intl pdo pdo_pgsql opcache zip
 
 
 COPY ./project .

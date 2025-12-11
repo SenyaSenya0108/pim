@@ -1,11 +1,10 @@
 # PIM
 
 ## Стек приложения
-**ЯП: PHP 8.4  
+**ЯП: PHP 8.3  
 Фреймворки: Symfony 7.3, Api Platform 4.2  
 БД: PostgreSQL 16  
 Веб-сервер: Caddy  
-Инструменты: deptrac  
 Инфраструктура: docker**  
 
 
