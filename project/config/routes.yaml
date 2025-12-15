@@ -1,13 +1,13 @@
 user_controllers:
     resource:
         path: ../src/Modules/User/Controller/
-        namespace: App\User\Controller
+        namespace: App\Modules\User\Controller
     type: attribute
 
 catalog_controllers:
     resource:
         path: ../src/Modules/Catalog/Controller/
-        namespace: App\Catalog\Controller
+        namespace: App\Modules\Catalog\Controller
     type: attribute
 
 application_controllers:
