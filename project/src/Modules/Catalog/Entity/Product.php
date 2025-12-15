@@ -1,22 +1,11 @@
 <?php
 
-namespace App\Catalog\Entity;
+namespace App\Modules\Catalog\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post;
-use App\Catalog\Repository\ProductRepository;
+use App\Modules\Catalog\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource(
-    operations: [
-        new GetCollection(),
-        new Get(),
-        new Post()
-    ]
-)]
 class Product
 {
     #[ORM\Id]

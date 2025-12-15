@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User\Entity;
+namespace App\Modules\User\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gesdinet\JWTRefreshTokenBundle\Entity\RefreshToken as BaseRefreshToken;

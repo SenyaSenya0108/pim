@@ -52,3 +52,6 @@
 /.web-server-pid
 
 .idea/
+.vscode/
+
+.env

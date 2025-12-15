@@ -1,29 +1,14 @@
 <?php
 
-namespace App\User\Entity;
+namespace App\Modules\User\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post;
-use App\User\Repository\UserRepository;
-use App\User\State\UserRegistrationProcessor;
+use App\Modules\User\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[ApiResource(
-    operations: [
-        new Post(
-            uriTemplate: '/register',
-            processor: UserRegistrationProcessor::class
-        ),
-        new GetCollection(security: 'is_granted(\'ROLE_ADMIN\')'),
-        new Get()
-    ]
-)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_UUID', fields: ['id'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
