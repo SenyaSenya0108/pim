@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\User\Entity;
 
+use App\Application\Enum\UserRole;
 use App\Modules\User\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -27,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = [UserRole::RoleUser];
 
     /**
      * @var ?string The hashed password

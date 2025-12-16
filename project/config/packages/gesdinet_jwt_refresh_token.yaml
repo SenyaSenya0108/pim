@@ -1,5 +1,3 @@
 gesdinet_jwt_refresh_token:
-#    logout:
-#        clear_site_data: [ "cookies", "storage" ]
     refresh_token_class: App\Modules\User\Entity\RefreshToken
     logout_firewall: main

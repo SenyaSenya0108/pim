@@ -3,20 +3,20 @@ deptrac:
     paths:
         - ./src
     layers:
-        -   name: Common
+        -   name: Application
             collectors:
                 -   type: directory
-                    value: src/Common/.*
+                    value: src/Application/.*
         -   name: User
             collectors:
                 -   type: directory
-                    value: src/User.*
+                    value: src/Modules/User.*
         -   name: Catalog
             collectors:
                 -   type: directory
-                    value: src/Catalog/.*
+                    value: src/Modules/Catalog/.*
     ruleset:
         User:
-            - Common
+            - Application
         Service:
-            - Common
+            - Application

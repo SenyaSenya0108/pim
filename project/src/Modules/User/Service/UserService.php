@@ -18,6 +18,11 @@ final readonly class UserService
     {
     }
 
+    public function getAll(): array
+    {
+        return $this->em->getRepository(User::class)->findAll();
+    }
+
     public function create(UserRegistrationDTO $userDTO): void
     {
         $user = new User();
