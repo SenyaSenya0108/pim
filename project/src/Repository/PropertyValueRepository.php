@@ -2,17 +2,17 @@
 
 namespace App\Repository;
 
-use App\Entity\Product;
+use App\Entity\PropertyValue;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Product>
+ * @extends ServiceEntityRepository<PropertyValue>
  */
-class ProductRepository extends ServiceEntityRepository
+class PropertyValueRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Product::class);
+        parent::__construct($registry, PropertyValue::class);
     }
 }

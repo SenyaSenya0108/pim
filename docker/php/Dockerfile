@@ -1,8 +1,5 @@
 FROM php:8.3-fpm-alpine3.22
 
-# Устанавливаем рабочую директорию
-WORKDIR /srv
-
 ENV PHP_IDE_CONFIG 'serverName=pim'
 
 # Установка дополнительных PHP расширений
@@ -20,11 +17,20 @@ RUN apk update && apk add \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-install intl pdo pdo_pgsql opcache zip
 
+# Создаем пользователя
+ARG UID
+ARG GID
+RUN addgroup -g $GID develop && adduser -u $UID -G develop -s /bin/sh -D develop
 
-COPY ./project .
+# Устанавливаем рабочую директорию
+WORKDIR /srv
+
+RUN chown -R develop:develop /srv
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-RUN composer install
-
+COPY --chown=develop:develop ./project .
 COPY --link=true ./docker/php/dev.ini /usr/local/etc/php/conf.d/project.ini
+
+USER develop
+
+#RUN composer install --optimize-autoloader

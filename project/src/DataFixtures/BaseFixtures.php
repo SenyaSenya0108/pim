@@ -27,7 +27,7 @@ class BaseFixtures extends Fixture
             $manager->persist($base);
             $manager->flush();
 
-            $this->addReference($name, $base);
+            $this->addReference($base->getName(), $base);
         }
     }
 }
