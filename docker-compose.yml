@@ -1,0 +1,52 @@
+services:
+  app:
+    container_name: app
+    depends_on:
+      - caddy
+      - db
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./project:/srv
+
+  caddy:
+    container_name: caddy
+    image: caddy:2.10.2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./docker/caddy/conf.d/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./project/public:/srv/public
+      - caddy_data:/data
+      - caddy_config:/config
+
+  db:
+    container_name: db
+    image: postgres:${POSTGRES_VERSION:-16}-alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME:-app}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${DB_USER:-app}
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-d", "${DB_NAME:-app}", "-U", "${DB_USER:-app}" ]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    ports:
+      - "5434:5432"
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+
+volumes:
+  caddy_data:
+  caddy_config:
+  database_data:
